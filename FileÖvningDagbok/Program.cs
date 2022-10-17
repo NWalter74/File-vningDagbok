@@ -5,11 +5,7 @@
         try
         {
             int userInput = 0;
-            int inläggCounter = 0;
-
-
-            //Dictionary<int, string> dagbokDict = new Dictionary<int, string>();
-            List<string> dagbokInläggList = new List<string>();
+            int inläggCounter = 1;
 
             do
             {
@@ -27,11 +23,9 @@
 
                         if(nyttInlägg != null && nyttInlägg.Trim() != "")
                         {
-                            File.AppendAllText("Dagbok.txt", "\n" + nyttInlägg);
+                            File.AppendAllText("Dagbok.txt", "\n" + inläggCounter + ". " + nyttInlägg);
 
                             inläggCounter++;
-
-                            dagbokInläggList.Add("\n" + inläggCounter + ". " + nyttInlägg);
 
                             Console.WriteLine("\nSparat!\n");
                         }
@@ -43,15 +37,8 @@
                     case 2:
                         if (File.Exists("Dagbok.txt") == true)
                         {
-                            //string fil = File.ReadAllText("Dagbok.txt");
-                            //Console.WriteLine(fil + "\n");
-                            if(dagbokInläggList.Count > 0)
-                            {
-                                foreach (string inlägg in dagbokInläggList)
-                                {
-                                    Console.WriteLine(inlägg);
-                                }
-                            }
+                            string fil = File.ReadAllText("Dagbok.txt");
+                            Console.WriteLine(fil + "\n");
                         }
                         else
                         {
@@ -63,7 +50,6 @@
                         {
                             File.Delete("Dagbok.txt");
                             Console.WriteLine("\nDagboken blev raderat!\n");
-                            dagbokInläggList.Clear();
                         }
                         else
                         {
